@@ -1,0 +1,11 @@
+
+M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(€Š·
+M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(†ˆŸÿ
+L	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Œü”`
+J	cpp:S1659"0Define each identifier in a dedicated statement.(öÅ”Ôùÿÿÿÿ
+L	cpp:S5945"2Use "std::string" instead of a C-style char array.(öÅ”Ôùÿÿÿÿ
+L	cpp:S5945"2Use "std::string" instead of a C-style char array.(öÅ”Ôùÿÿÿÿ
+U	cpp:S5416";"using" should be preferred to "typedef" for type aliasing.(Òº¾“üÿÿÿÿ
+M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(€Š·
+M	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(†ˆŸÿ
+L	cpp:S5028"8Replace this macro by "const", "constexpr" or an "enum".(Œü”`
