@@ -12,7 +12,14 @@
 
 void Choix(ITEM *listItem);
 
-/* ===================================================================== */
+/* =======================================*/
+/* fonction comparaison fournie a qsort() */
+static int compare (const void* str1,const void* str2)
+{
+    const char **pp1=(const char **) &str1;
+    const char **pp2=(const char **) &str2;
+    return(strcmp(*pp1,*pp2));
+}
 
 void Lire() {
     int i;
@@ -115,25 +122,25 @@ void Choix(ITEM *ListITEM) {
             case '1':
             case 'A':
             case 'a':
-                // TrierAgeAsc(items, nb_items);
+                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compare);
                 Afficher(ListITEM);
                 break;
             case '2':
             case 'D':
             case 'd':
-                // TrierAgeDes(items, nb_items);
+                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compare);
                 Afficher(ListITEM);
                 break;
             case '3':
             case 'N':
             case 'n':
-                // TrierNom(items, nb_items);
+                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compare);
                 Afficher(ListITEM);
                 break;
             case '4':
             case 'P':
             case 'p':
-                // TrierPrenom(items, nb_items);
+                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compare);
                 Afficher(ListITEM);
                 break;
             default:
