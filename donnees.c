@@ -38,9 +38,10 @@ void Lire() {
         char cas[10];
         printf("*----------------------------*\n");
 
-        printf("- 0 ou T - Quitter la Saisie pour le mode Tri\n");
-        printf("- 1 ou A - Saisie de données\n");
-        printf("- 2 ou Q - Quitter \n");
+        printf("- 0 ou T - Tri\n");
+        printf("- 1 ou S - Saisie des données\n");
+        printf("- 2 ou L - Lecture des données\n");
+        printf("- 3 ou Q - Quitter \n");
 
         scanf("%s", cas);
         switch (cas[0]) {
@@ -71,6 +72,11 @@ void Lire() {
                 };
                 break;
             case '2':
+            case 'l':
+            case 'L':
+
+                break;
+            case '3':
             case 'q':
             case 'Q':
                 exit(0);
