@@ -14,17 +14,20 @@ void Choix(ITEM *listItem);
 
 /* =======================================*/
 /* fonction comparaison fournie a qsort() */
-static int compare (const void* str1,const void* str2)
-{
-    const char **pp1=(const char **) &str1;
-    const char **pp2=(const char **) &str2;
-    return(strcmp(*pp1,*pp2));
+int compareAge(const void *a, const void *b) {
+    return ((ITEM *) b)->age - ((ITEM *) a)->age;
 }
-static int compareDec (const void* str1,const void* str2)
-{
-    const char **pp1=(const char **) &str2;
-    const char **pp2=(const char **) &str1;
-    return(strcmp(*pp1,*pp2));
+
+int compareAgeDec(const void *a, const void *b) {
+    return ((ITEM *) a)->age - ((ITEM *) b)->age;
+}
+
+int compareName(const void *a, const void *b) {
+    return ((ITEM *) a)->nom - ((ITEM *) b)->nom;
+}
+
+int compareFirstname(const void *a, const void *b) {
+    return ((ITEM *) a)->prenom - ((ITEM *) b)->prenom;
 }
 
 void Lire() {
@@ -128,25 +131,25 @@ void Choix(ITEM *ListITEM) {
             case '1':
             case 'A':
             case 'a':
-                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compare);
+                qsort(ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareAge);
                 Afficher(ListITEM);
                 break;
             case '2':
             case 'D':
             case 'd':
-                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareDec);
+                qsort(ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareAgeDec);
                 Afficher(ListITEM);
                 break;
             case '3':
             case 'N':
             case 'n':
-                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compare);
+                qsort(ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareName);
                 Afficher(ListITEM);
                 break;
             case '4':
             case 'P':
             case 'p':
-                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compare);
+                qsort(ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareFirstname);
                 Afficher(ListITEM);
                 break;
             default:
