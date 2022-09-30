@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: tp08tri
+# Project: TP09tri
 # Configurations: Debug
 # =============================================================================
 
@@ -39,50 +39,50 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /root/CLionProjectsTP/tp08tri/cmake-build-debug/
+cmake_ninja_workdir = /root/CLionProjectsTP/tp09tri/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target tp08tri
+# Object build statements for EXECUTABLE target TP09tri
 
 
 #############################################
-# Order-only phony target for tp08tri
+# Order-only phony target for TP09tri
 
-build cmake_object_order_depends_target_tp08tri: phony || CMakeFiles/tp08tri.dir
+build cmake_object_order_depends_target_TP09tri: phony || CMakeFiles/TP09tri.dir
 
-build CMakeFiles/tp08tri.dir/main.c.o: C_COMPILER__tp08tri_Debug /root/CLionProjectsTP/tp08tri/main.c || cmake_object_order_depends_target_tp08tri
-  DEP_FILE = CMakeFiles/tp08tri.dir/main.c.o.d
+build CMakeFiles/TP09tri.dir/main.c.o: C_COMPILER__TP09tri_Debug /root/CLionProjectsTP/tp09tri/main.c || cmake_object_order_depends_target_TP09tri
+  DEP_FILE = CMakeFiles/TP09tri.dir/main.c.o.d
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/tp08tri.dir
-  OBJECT_FILE_DIR = CMakeFiles/tp08tri.dir
+  OBJECT_DIR = CMakeFiles/TP09tri.dir
+  OBJECT_FILE_DIR = CMakeFiles/TP09tri.dir
 
-build CMakeFiles/tp08tri.dir/donnees.c.o: C_COMPILER__tp08tri_Debug /root/CLionProjectsTP/tp08tri/donnees.c || cmake_object_order_depends_target_tp08tri
-  DEP_FILE = CMakeFiles/tp08tri.dir/donnees.c.o.d
+build CMakeFiles/TP09tri.dir/donnees.c.o: C_COMPILER__TP09tri_Debug /root/CLionProjectsTP/tp09tri/donnees.c || cmake_object_order_depends_target_TP09tri
+  DEP_FILE = CMakeFiles/TP09tri.dir/donnees.c.o.d
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/tp08tri.dir
-  OBJECT_FILE_DIR = CMakeFiles/tp08tri.dir
+  OBJECT_DIR = CMakeFiles/TP09tri.dir
+  OBJECT_FILE_DIR = CMakeFiles/TP09tri.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target tp08tri
+# Link build statements for EXECUTABLE target TP09tri
 
 
 #############################################
-# Link the executable tp08tri
+# Link the executable TP09tri
 
-build tp08tri: C_EXECUTABLE_LINKER__tp08tri_Debug CMakeFiles/tp08tri.dir/main.c.o CMakeFiles/tp08tri.dir/donnees.c.o
+build TP09tri: C_EXECUTABLE_LINKER__TP09tri_Debug CMakeFiles/TP09tri.dir/main.c.o CMakeFiles/TP09tri.dir/donnees.c.o
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/tp08tri.dir
+  OBJECT_DIR = CMakeFiles/TP09tri.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = tp08tri
-  TARGET_PDB = tp08tri.dbg
+  TARGET_FILE = TP09tri
+  TARGET_PDB = TP09tri.dbg
 
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /root/CLionProjectsTP/tp08tri/cmake-build-debug && "/root/Bureau/Outils & Produits Jetbrains/clion-2022.1.2/bin/cmake/linux/bin/ccmake" -S/root/CLionProjectsTP/tp08tri -B/root/CLionProjectsTP/tp08tri/cmake-build-debug
+  COMMAND = cd /root/CLionProjectsTP/tp09tri/cmake-build-debug && "/root/Bureau/Outils & Produits Jetbrains/clion-2022.1.2/bin/cmake/linux/bin/ccmake" -S/root/CLionProjectsTP/tp09tri -B/root/CLionProjectsTP/tp09tri/cmake-build-debug
   DESC = Running CMake cache editor...
   pool = console
   restat = 1
@@ -94,7 +94,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /root/CLionProjectsTP/tp08tri/cmake-build-debug && "/root/Bureau/Outils & Produits Jetbrains/clion-2022.1.2/bin/cmake/linux/bin/cmake" --regenerate-during-build -S/root/CLionProjectsTP/tp08tri -B/root/CLionProjectsTP/tp08tri/cmake-build-debug
+  COMMAND = cd /root/CLionProjectsTP/tp09tri/cmake-build-debug && "/root/Bureau/Outils & Produits Jetbrains/clion-2022.1.2/bin/cmake/linux/bin/cmake" --regenerate-during-build -S/root/CLionProjectsTP/tp09tri -B/root/CLionProjectsTP/tp09tri/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -110,9 +110,9 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /root/CLionProjectsTP/tp08tri/cmake-build-debug
+# Folder: /root/CLionProjectsTP/tp09tri/cmake-build-debug
 
-build all: phony tp08tri
+build all: phony TP09tri
 
 # =============================================================================
 # Built-in targets

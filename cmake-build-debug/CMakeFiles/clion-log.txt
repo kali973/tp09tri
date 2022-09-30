@@ -1,4 +1,4 @@
-"/root/Bureau/Outils & Produits Jetbrains/clion-2022.1.2/bin/cmake/linux/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/root/Bureau/Outils & Produits Jetbrains/clion-2022.1.2/bin/ninja/linux/ninja" -G Ninja -S /root/CLionProjectsTP/tp08tri -B /root/CLionProjectsTP/tp08tri/cmake-build-debug
+"/root/Bureau/Outils & Produits Jetbrains/clion-2022.1.2/bin/cmake/linux/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/root/Bureau/Outils & Produits Jetbrains/clion-2022.1.2/bin/ninja/linux/ninja" -G Ninja -S /root/CLionProjectsTP/tp09tri -B /root/CLionProjectsTP/tp09tri/cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: /root/CLionProjectsTP/tp08tri/cmake-build-debug
+-- Build files have been written to: /root/CLionProjectsTP/tp09tri/cmake-build-debug

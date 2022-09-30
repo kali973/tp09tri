@@ -2,8 +2,8 @@
 // Created by root on 29/09/22.
 //
 
-#ifndef TP08TRI_DONNEES_H
-#define TP08TRI_DONNEES_H
+#ifndef TP09TRI_DONNEES_H
+#define TP09TRI_DONNEES_H
 /* ===================================================================== *
  *
  * header donnees.h
@@ -14,10 +14,12 @@
 
 /* declaration des fonctions definies dans donnees.c */
 
-extern void Lire(ITEM items[], int *nb_items);
+extern void Lire();
 
-extern void Afficher(ITEM items[], int nb_items);
+extern void Afficher(ITEM *listItem);
 
-/* ===================================================================== */
+extern void setParametersI(ITEM *pe);
 
-#endif //TP08TRI_DONNEES_H
+extern void Choix(ITEM *listItem);
+
+#endif //TP09TRI_DONNEES_H

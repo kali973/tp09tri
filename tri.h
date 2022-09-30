@@ -2,8 +2,8 @@
 // Created by root on 29/09/22.
 //
 
-#ifndef TP08TRI_TRI_H
-#define TP08TRI_TRI_H
+#ifndef TP09TRI_TRI_H
+#define TP09TRI_TRI_H
 /* ===================================================================== *
  *
  * header tri.h
@@ -15,10 +15,12 @@
 #define MAX_ITEM 100
 
 typedef struct {
-    char nom[30], prenom[20];
+    char nom[30],
+            prenom[20];
     int age;
+    struct ITEM *next;
 } ITEM;
 
 /* ===================================================================== */
 
-#endif //TP08TRI_TRI_H
+#endif //TP09TRI_TRI_H
