@@ -142,7 +142,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=TP09tri
+CMAKE_PROJECT_NAME:STATIC=tp09tri
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -214,6 +214,15 @@ TP09tri_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 TP09tri_SOURCE_DIR:STATIC=/root/CLionProjectsTP/tp09tri
+
+//Value Computed by CMake
+tp09tri_BINARY_DIR:STATIC=/root/CLionProjectsTP/tp09tri/cmake-build-debug
+
+//Value Computed by CMake
+tp09tri_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+tp09tri_SOURCE_DIR:STATIC=/root/CLionProjectsTP/tp09tri
 
 
 ########################

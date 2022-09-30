@@ -2,8 +2,8 @@
 // Created by root on 29/09/22.
 //
 
-#ifndef TP09TRI_TRI_H
-#define TP09TRI_TRI_H
+#ifndef tp09TRI_TRI_H
+#define tp09TRI_TRI_H
 /* ===================================================================== *
  *
  * header tri.h
@@ -23,4 +23,4 @@ typedef struct {
 
 /* ===================================================================== */
 
-#endif //TP09TRI_TRI_H
+#endif //tp09TRI_TRI_H

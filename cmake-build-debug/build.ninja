@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: TP09tri
+# Project: tp09tri
 # Configurations: Debug
 # =============================================================================
 
@@ -41,41 +41,41 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /root/CLionProjectsTP/tp09tri/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target TP09tri
+# Object build statements for EXECUTABLE target tp09tri
 
 
 #############################################
-# Order-only phony target for TP09tri
+# Order-only phony target for tp09tri
 
-build cmake_object_order_depends_target_TP09tri: phony || CMakeFiles/TP09tri.dir
+build cmake_object_order_depends_target_tp09tri: phony || CMakeFiles/tp09tri.dir
 
-build CMakeFiles/TP09tri.dir/main.c.o: C_COMPILER__TP09tri_Debug /root/CLionProjectsTP/tp09tri/main.c || cmake_object_order_depends_target_TP09tri
-  DEP_FILE = CMakeFiles/TP09tri.dir/main.c.o.d
+build CMakeFiles/tp09tri.dir/main.c.o: C_COMPILER__tp09tri_Debug /root/CLionProjectsTP/tp09tri/main.c || cmake_object_order_depends_target_tp09tri
+  DEP_FILE = CMakeFiles/tp09tri.dir/main.c.o.d
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/TP09tri.dir
-  OBJECT_FILE_DIR = CMakeFiles/TP09tri.dir
+  OBJECT_DIR = CMakeFiles/tp09tri.dir
+  OBJECT_FILE_DIR = CMakeFiles/tp09tri.dir
 
-build CMakeFiles/TP09tri.dir/donnees.c.o: C_COMPILER__TP09tri_Debug /root/CLionProjectsTP/tp09tri/donnees.c || cmake_object_order_depends_target_TP09tri
-  DEP_FILE = CMakeFiles/TP09tri.dir/donnees.c.o.d
+build CMakeFiles/tp09tri.dir/donnees.c.o: C_COMPILER__tp09tri_Debug /root/CLionProjectsTP/tp09tri/donnees.c || cmake_object_order_depends_target_tp09tri
+  DEP_FILE = CMakeFiles/tp09tri.dir/donnees.c.o.d
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/TP09tri.dir
-  OBJECT_FILE_DIR = CMakeFiles/TP09tri.dir
+  OBJECT_DIR = CMakeFiles/tp09tri.dir
+  OBJECT_FILE_DIR = CMakeFiles/tp09tri.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target TP09tri
+# Link build statements for EXECUTABLE target tp09tri
 
 
 #############################################
-# Link the executable TP09tri
+# Link the executable tp09tri
 
-build TP09tri: C_EXECUTABLE_LINKER__TP09tri_Debug CMakeFiles/TP09tri.dir/main.c.o CMakeFiles/TP09tri.dir/donnees.c.o
+build tp09tri: C_EXECUTABLE_LINKER__tp09tri_Debug CMakeFiles/tp09tri.dir/main.c.o CMakeFiles/tp09tri.dir/donnees.c.o
   FLAGS = -g
-  OBJECT_DIR = CMakeFiles/TP09tri.dir
+  OBJECT_DIR = CMakeFiles/tp09tri.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = TP09tri
-  TARGET_PDB = TP09tri.dbg
+  TARGET_FILE = tp09tri
+  TARGET_PDB = tp09tri.dbg
 
 
 #############################################
@@ -112,7 +112,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /root/CLionProjectsTP/tp09tri/cmake-build-debug
 
-build all: phony TP09tri
+build all: phony tp09tri
 
 # =============================================================================
 # Built-in targets
