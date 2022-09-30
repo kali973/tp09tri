@@ -38,15 +38,17 @@ void Lire() {
         char cas[10];
         printf("*----------------------------*\n");
 
-        printf("- 0 ou Q - Quitter la Saisie\n");
+        printf("- 0 ou T - Quitter la Saisie pour le mode Tri\n");
         printf("- 1 ou A - Saisie de données\n");
+        printf("- 2 ou Q - Quitter \n");
 
         scanf("%s", cas);
         switch (cas[0]) {
             case '0':
-            case 'q':
-            case 'Q':
+            case 't':
+            case 'T':
                 Choix(ListITEM);
+                break;
             case '1':
             case 's':
             case 'S':
@@ -68,6 +70,10 @@ void Lire() {
                     LastCell = pe; // l'element que l'on vient de creer est desormais le last
                 };
                 break;
+            case '2':
+            case 'q':
+            case 'Q':
+                exit(0);
         }
     }
 }
