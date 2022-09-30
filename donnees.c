@@ -12,8 +12,6 @@
 
 void Choix(ITEM *listItem);
 
-/* =======================================*/
-/* fonction comparaison fournie a qsort() */
 int compareAge(const void *a, const void *b) {
     return ((ITEM *) b)->age - ((ITEM *) a)->age;
 }
@@ -131,25 +129,25 @@ void Choix(ITEM *ListITEM) {
             case '1':
             case 'A':
             case 'a':
-                qsort(ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareAge);
+                qsort(ListITEM, MAX_ITEM, sizeof *ListITEM, compareAge);
                 Afficher(ListITEM);
                 break;
             case '2':
             case 'D':
             case 'd':
-                qsort(ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareAgeDec);
+                qsort(ListITEM, MAX_ITEM, sizeof *ListITEM, compareAgeDec);
                 Afficher(ListITEM);
                 break;
             case '3':
             case 'N':
             case 'n':
-                qsort(ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareName);
+                qsort(ListITEM, MAX_ITEM, sizeof *ListITEM, compareName);
                 Afficher(ListITEM);
                 break;
             case '4':
             case 'P':
             case 'p':
-                qsort(ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareFirstname);
+                qsort(ListITEM, MAX_ITEM, sizeof *ListITEM, compareFirstname);
                 Afficher(ListITEM);
                 break;
             default:
