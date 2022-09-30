@@ -20,6 +20,12 @@ static int compare (const void* str1,const void* str2)
     const char **pp2=(const char **) &str2;
     return(strcmp(*pp1,*pp2));
 }
+static int compareDec (const void* str1,const void* str2)
+{
+    const char **pp1=(const char **) &str2;
+    const char **pp2=(const char **) &str1;
+    return(strcmp(*pp1,*pp2));
+}
 
 void Lire() {
     int i;
@@ -128,7 +134,7 @@ void Choix(ITEM *ListITEM) {
             case '2':
             case 'D':
             case 'd':
-                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compare);
+                qsort (ListITEM, sizeof ListITEM / sizeof *ListITEM, sizeof *ListITEM, compareDec);
                 Afficher(ListITEM);
                 break;
             case '3':
