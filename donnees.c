@@ -7,10 +7,18 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "tri.h"
 #include "donnees.h"
 
+#define MAX_FILE_NAME  20
+#define MAX_LINE  80
+
 void Choix(ITEM *listItem);
+
+int haveFile(char *fname);
+
+void printFile(char *fname);
 
 int compareAge(const void *a, const void *b) {
     return ((ITEM *) b)->age - ((ITEM *) a)->age;
@@ -28,11 +36,14 @@ int compareFirstname(const void *a, const void *b) {
     return ((ITEM *) a)->prenom - ((ITEM *) b)->prenom;
 }
 
-void Lire() {
+void Lire(int argc, char **argv) {
     int i;
     char *pe;
     ITEM *ListITEM = NULL;
     ITEM *LastCell = NULL;
+    char FileName[MAX_FILE_NAME];
+
+    char mode;
 
     while (TRUE) {
         char cas[10];
@@ -75,12 +86,44 @@ void Lire() {
             case 'l':
             case 'L':
 
+                if (!(haveFile(FileName))) {
+                    printf(" file %s does not exist\n", FileName);
+                    exit(1);
+                }
+
+                printFile(FileName);
                 break;
             case '3':
             case 'q':
             case 'Q':
                 exit(0);
         }
+    }
+
+}
+
+void printFile(char *fname) {
+    FILE *fp;
+    char lineContent[MAX_LINE];
+    fp = fopen(fname, "r");
+    if (fp == NULL) {
+        printf("in printFile, file %s open error\n", fname);
+        exit(1);
+    }
+    while ((fgets(lineContent, sizeof(lineContent), fp) != NULL)) {
+        printf("%s", lineContent);
+    };
+    fclose(fp);
+}
+
+int haveFile(char *fname) {
+    FILE *fp;
+    fp = fopen(fname, "r");
+    if (fp == NULL) {
+        return 0;
+    } else {
+        fclose(fp);
+        return 1;
     }
 }
 

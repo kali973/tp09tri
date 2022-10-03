@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[]) {
 
-    Lire();
+    Lire(argc, argv);
     return 0;
 }
 

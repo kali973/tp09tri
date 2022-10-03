@@ -14,7 +14,7 @@
 
 /* declaration des fonctions definies dans donnees.c */
 
-extern void Lire();
+extern void Lire(int argc, char **argv);
 
 extern void Afficher(ITEM *listItem);
 
