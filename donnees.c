@@ -35,13 +35,24 @@ int compareName(const void *a, const void *b) {
 int compareFirstname(const void *a, const void *b) {
     return ((ITEM *) a)->prenom - ((ITEM *) b)->prenom;
 }
+void Trier(ITEM items[], int nb_items) {
+    int i, j;
+    ITEM swap;
+
+    for (i = 0; i < nb_items; i++)
+        for (j = i + 1; j < nb_items; j++)
+            if (items[i].age > items[j].age) {
+                swap = items[j];
+                items[j] = items[i];
+                items[i] = swap;
+            }
+}
 
 void Lire(int argc, char **argv) {
     int i;
     char *pe;
     ITEM *ListITEM = NULL;
     ITEM *LastCell = NULL;
-    char FileName[MAX_FILE_NAME];
 
     char mode;
 
@@ -86,12 +97,12 @@ void Lire(int argc, char **argv) {
             case 'l':
             case 'L':
 
-                if (!(haveFile(FileName))) {
-                    printf(" file %s does not exist\n", FileName);
+                if (!(haveFile("/root/CLionProjectsTP/tp09tri/tri.txt"))) {
+                    printf(" file %s does not exist\n", "tri.txt");
                     exit(1);
                 }
 
-                printFile(FileName);
+                printFile("/root/CLionProjectsTP/tp09tri/tri.txt");
                 break;
             case '3':
             case 'q':
