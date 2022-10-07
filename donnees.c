@@ -21,31 +21,19 @@ int haveFile(char *fname);
 void printFile(char *fname);
 
 int compareAge(const void *a, const void *b) {
-    return ((ITEM *) b)->age - ((ITEM *) a)->age;
+    return ((ITEM *) b)->age >> ((ITEM *) a)->age;
 }
 
 int compareAgeDec(const void *a, const void *b) {
-    return ((ITEM *) a)->age - ((ITEM *) b)->age;
+    return ((ITEM *) a)->age < ((ITEM *) b)->age;
 }
 
 int compareName(const void *a, const void *b) {
-    return ((ITEM *) a)->nom - ((ITEM *) b)->nom;
+    return ((ITEM *) a)->nom > ((ITEM *) b)->nom;
 }
 
 int compareFirstname(const void *a, const void *b) {
-    return ((ITEM *) a)->prenom - ((ITEM *) b)->prenom;
-}
-void Trier(ITEM items[], int nb_items) {
-    int i, j;
-    ITEM swap;
-
-    for (i = 0; i < nb_items; i++)
-        for (j = i + 1; j < nb_items; j++)
-            if (items[i].age > items[j].age) {
-                swap = items[j];
-                items[j] = items[i];
-                items[i] = swap;
-            }
+    return ((ITEM *) a)->prenom > ((ITEM *) b)->prenom;
 }
 
 void Lire(int argc, char **argv) {
@@ -159,9 +147,9 @@ void setParametersI(ITEM *pe) {
 
 /* ===================================================================== */
 
-void Afficher(ITEM *listItem) {
+void Afficher(ITEM *ListITEM) {
 
-    ITEM *pe = listItem;
+    ITEM *pe = ListITEM;
     printf("\n*** Liste des donnees :\n\n");
     while (pe != NULL) {
         printf("Nom    : %s \n", pe->nom);
@@ -195,25 +183,25 @@ void Choix(ITEM *ListITEM) {
             case '1':
             case 'A':
             case 'a':
-                qsort(ListITEM, MAX_ITEM, sizeof *ListITEM, compareAge);
+                qsort(ListITEM, sizeof *ListITEM / sizeof ListITEM, sizeof *ListITEM, compareAge);
                 Afficher(ListITEM);
                 break;
             case '2':
             case 'D':
             case 'd':
-                qsort(ListITEM, MAX_ITEM, sizeof *ListITEM, compareAgeDec);
+                qsort(ListITEM, sizeof *ListITEM / sizeof ListITEM, sizeof *ListITEM, compareAgeDec);
                 Afficher(ListITEM);
                 break;
             case '3':
             case 'N':
             case 'n':
-                qsort(ListITEM, MAX_ITEM, sizeof *ListITEM, compareName);
+                qsort(ListITEM, sizeof *ListITEM / sizeof ListITEM, sizeof *ListITEM, compareName);
                 Afficher(ListITEM);
                 break;
             case '4':
             case 'P':
             case 'p':
-                qsort(ListITEM, MAX_ITEM, sizeof *ListITEM, compareFirstname);
+                qsort(ListITEM, sizeof *ListITEM / sizeof ListITEM, sizeof *ListITEM, compareFirstname);
                 Afficher(ListITEM);
                 break;
             default:
