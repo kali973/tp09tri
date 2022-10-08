@@ -1,4 +1,4 @@
-var searchData=
-[
-  ['tri_2eh_0',['tri.h',['../tri_8h.html',1,'']]]
-];
+var searchData =
+    [
+        ['readme_2emd_0', ['README.md', ['../_r_e_a_d_m_e_8md.html', 1, '']]]
+    ];

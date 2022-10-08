@@ -7,18 +7,21 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdbool.h>
+#include <asm-generic/errno-base.h>
+#include <errno.h>
+#include <unistd.h>
 #include "tri.h"
 #include "donnees.h"
 
-#define MAX_FILE_NAME  20
-#define MAX_LINE  80
+#define BUFFER_SIZE 200
 
 void Choix(ITEM *listItem);
 
-int haveFile(char *fname);
+void writeFile(char *fname, ITEM *listItem);
 
-void printFile(char *fname);
+int readFile(char *fname);
+
+void LoadDisplay(ITEM *listItem, int ind);
 
 int compareAge(const void *a, const void *b) {
     return ((ITEM *) b)->age >> ((ITEM *) a)->age;
@@ -37,21 +40,33 @@ int compareFirstname(const void *a, const void *b) {
 }
 
 void Lire(int argc, char **argv) {
-    int i;
     char *pe;
+    char cas[10];
     ITEM *ListITEM = NULL;
     ITEM *LastCell = NULL;
 
-    char mode;
+    const char *nameFile = "/tri.txt";
+
+    char buffer[BUFFER_SIZE];
+    if ( getcwd( buffer, BUFFER_SIZE ) == NULL ) {
+        fprintf( stderr, "Cannot get current working directory path\n" );
+        if ( errno == ERANGE ) {
+            fprintf( stderr, "Buffer size is too small.\n" );
+        }
+        exit( EXIT_FAILURE );
+    }
+
+    printf( "Current working directory: %s\n", buffer );
+
+    const char *filename = strcat(buffer, nameFile);
 
     while (TRUE) {
-        char cas[10];
         printf("*----------------------------*\n");
-
         printf("- 0 ou T - Tri\n");
         printf("- 1 ou S - Saisie des données\n");
         printf("- 2 ou L - Lecture des données\n");
-        printf("- 3 ou Q - Quitter \n");
+        printf("- 3 ou E - Enregistrer des données\n");
+        printf("- 4 ou Q - Quitter \n");
 
         scanf("%s", cas);
         switch (cas[0]) {
@@ -65,64 +80,126 @@ void Lire(int argc, char **argv) {
             case 'S':
                 // Allocation memory
                 pe = (ITEM *) (malloc(sizeof(ITEM)));
-                //Mandatory
+
                 if (pe == NULL) {
                     printf(" no memory \n");
                     exit(1);
                 }
                 setParametersI(pe);
-                // 1er element: traitement particulier, car ListEtudiant a fixer
+
                 if (LastCell == NULL) {
                     ListITEM = pe; // liste fixee
                     LastCell = pe;
                 } else {
                     // Rattachement
                     LastCell->next = pe;
-                    LastCell = pe; // l'element que l'on vient de creer est desormais le last
+                    LastCell = pe;
                 };
                 break;
             case '2':
             case 'l':
             case 'L':
-
-                if (!(haveFile("/root/CLionProjectsTP/tp09tri/tri.txt"))) {
-                    printf(" file %s does not exist\n", "tri.txt");
-                    exit(1);
+                if (readFile(filename) != -1) {
+                    printf("Chargement terminé\n\n");
                 }
-
-                printFile("/root/CLionProjectsTP/tp09tri/tri.txt");
                 break;
             case '3':
+            case 'e':
+            case 'E':
+                writeFile(filename, ListITEM);
+                break;
+            case '4':
             case 'q':
             case 'Q':
+
+                free(pe);
+                free(LastCell);
+                free(ListITEM);
+
                 exit(0);
         }
     }
-
 }
 
-void printFile(char *fname) {
+void writeFile(char *fname, ITEM *ListITEM) {
     FILE *fp;
-    char lineContent[MAX_LINE];
-    fp = fopen(fname, "r");
+    int i = 0;
+
+    fp = fopen(fname, "w+");
     if (fp == NULL) {
-        printf("in printFile, file %s open error\n", fname);
-        exit(1);
+        printf("in readFile, file %s open error\n", fname);
+        return;
     }
-    while ((fgets(lineContent, sizeof(lineContent), fp) != NULL)) {
-        printf("%s", lineContent);
-    };
+    ITEM *pe = ListITEM;
+
+    while (pe != NULL) {
+        fprintf(fp, "%30s", pe->nom);
+        fprintf(fp, "%20s", pe->prenom);
+        fprintf(fp, "%3d", pe->age);
+        pe = pe->next;
+        i++;
+    }
+
+    printf("\n*** Nombre d'enregistrement => %d\n\n", i);
     fclose(fp);
 }
 
-int haveFile(char *fname) {
+int readFile(char *fname) {
     FILE *fp;
+    int ind = 0;
+    int ret;
+    ITEM *pe;
+    ITEM *ListITEM = NULL;
+    ITEM *LastCell = NULL;
+
     fp = fopen(fname, "r");
     if (fp == NULL) {
-        return 0;
-    } else {
-        fclose(fp);
-        return 1;
+        printf("in readFile, file %s open error => File not found\n\n", fname);
+        return -1;
+    }
+
+    while (fgetc(fp) != EOF){
+        pe = (ITEM *) malloc(sizeof(ITEM));
+        if (pe == NULL) {
+            printf(" no memory \n");
+            exit(1);
+        }
+        ret = fscanf(fp, "%30s %20s %3d", &pe[ind].nom, &pe[ind].prenom, &pe[ind].age);
+
+        if (ret == 3) {
+            strcpy(pe->nom, &pe[ind].nom);
+            strcpy(pe->prenom, &pe[ind].prenom);
+            int *v = &pe[ind].age;
+            pe->age = *v;
+            ind++;
+
+            if (LastCell == NULL) {
+                ListITEM = pe;
+                LastCell = pe;
+            } else {
+                LastCell->next = pe;
+                LastCell = pe;
+            }
+        }
+    }
+
+    fclose(fp);
+    printf("\n*** Lecture des donnees fin => %d\n\n", ind);
+    if (ind > 0)  {
+        LoadDisplay(ListITEM,ind);
+    }
+    return ListITEM;
+}
+
+void LoadDisplay(ITEM *listItem, int ind) {
+
+    printf("\n*** Liste des donnees après chargement:\n\n");
+    int i = 0;
+    for (i=0; i< ind; i++){
+        printf("Nom    : %s \n", listItem->nom);
+        printf("Prenom : %s \n", listItem->prenom);
+        printf("Age    : %d \n\n", listItem->age);
+        listItem = listItem->next;
     }
 }
 
@@ -145,13 +222,12 @@ void setParametersI(ITEM *pe) {
     pe->next = NULL;
 }
 
-/* ===================================================================== */
-
 void Afficher(ITEM *ListITEM) {
 
     ITEM *pe = ListITEM;
     printf("\n*** Liste des donnees :\n\n");
-    while (pe != NULL) {
+    int ind = 0;
+    while (pe->next != NULL ) {
         printf("Nom    : %s \n", pe->nom);
         printf("Prenom : %s \n", pe->prenom);
         printf("Age    : %d \n\n", pe->age);
