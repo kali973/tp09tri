@@ -26,11 +26,11 @@ void LoadDisplay(ITEM *listItem, int ind);
 int effacer(const char *filename);
 
 int compareAge(const void *a, const void *b) {
-    return ((ITEM *) b)->age > ((ITEM *) a)->age;
+    return ((ITEM *) b)->age < ((ITEM *) a)->age;
 }
 
 int compareAgeDec(const void *a, const void *b) {
-    return ((ITEM *) a)->age < ((ITEM *) b)->age;
+    return ((ITEM *) a)->age > ((ITEM *) b)->age;
 }
 
 int compareName(const void *a, const void *b) {
@@ -67,13 +67,15 @@ void Lire(int argc, char **argv) {
     const char *filename = strcat(buffer, nameFile);
 
     while (TRUE) {
-        printf("*----------------------------*\n");
+
+        printf("\n");
         printf("- 0 ou T - Tri\n");
         printf("- 1 ou S - Saisie des données\n");
         printf("- 2 ou L - Lecture des données\n");
         printf("- 3 ou E - Effacer les données\n");
-        printf("- 4 ou Q - Quitter \n");
+        printf("- 4 ou Q - Quitter \n\n");
 
+        printf("=> ");
         scanf("%s", cas);
         switch (cas[0]) {
             case '0':
@@ -168,10 +170,7 @@ int writeFile(char *fname, ITEM *ListITEM) {
     ITEM *pe = ListITEM;
 
     while (pe != NULL) {
-        fprintf(fp, "%30s", pe->nom);
-        fprintf(fp, "%20s", pe->prenom);
-        fprintf(fp, "%d", pe->age);
-        fprintf(fp, "\n");
+        fprintf(fp, "%29s %19s %d\n", pe->nom, pe->prenom, pe->age);
         pe = pe->next;
         i++;
     }
@@ -207,15 +206,12 @@ ITEM *readFile(char *fname) {
             return NULL;
         }
         pe = (ITEM *) malloc(sizeof(ITEM));
-        sscanf(buffer, "%29s", nom);
-        sscanf(buffer, "%19s", prenom);
-        sscanf(buffer, "%*[^0-9]%d", &age);
 
+        sscanf(buffer, "%29s %19s %d", nom, prenom, &age);
         strcpy(pe->nom, &nom);
         strcpy(pe->prenom, &prenom);
         pe->age = age;
         ind++;
-
         if (LastCell == NULL) {
             ListITEM = pe;
             LastCell = pe;
@@ -276,15 +272,17 @@ void setParametersI(ITEM *pe) {
 /* Fonction d'Affichage de la liste chainée   */
 /*--------------------------------------------*/
 
-int Afficher(ITEM *ListITEM) {
+int Afficher(ITEM *ListITEM, int showON) {
 
     ITEM *pe = ListITEM;
-    printf("\n*** Liste des donnees :\n\n");
+
     int ind = 0;
     while (pe != NULL) {
-        printf("Nom    : %s \n", pe->nom);
-        printf("Prenom : %s \n", pe->prenom);
-        printf("Age    : %d \n\n", pe->age);
+        if (showON) {
+            printf("Nom    : %s \n", pe->nom);
+            printf("Prenom : %s \n", pe->prenom);
+            printf("Age    : %d \n\n", pe->age);
+        }
         pe = pe->next;
         ind++;
     }
@@ -299,16 +297,21 @@ void Choix(ITEM *ListITEM) {
     char cas[10];
     int ind = 0;
     while (TRUE) {
+
+        printf("\033[H\033[2J");
+        printf("\033[36m");
         printf("*------------------------------------------*\n");
 
-        printf("*** Tri :\n");
+        printf("*   Tri :\n\n");
         printf("- 1 ou A - numerique selon l'Age (croissant)\n");
         printf("- 2 ou D - numerique selon l'Age (Decroissant)\n");
         printf("- 3 ou N - alphabetique sur le Nom\n");
         printf("- 4 ou P - alphabetique sur le Prenom\n");
-        printf("- 0 ou Q - quitter\n");
+        printf("- 0 ou Q - quitter\n\n");
+        printf("=> ");
 
         scanf("%s", cas);
+        printf("\n");
 
         switch (cas[0]) {
             case '0':
@@ -319,30 +322,33 @@ void Choix(ITEM *ListITEM) {
             case '1':
             case 'A':
             case 'a':
-                ind = Afficher(ListITEM);
-                qsort(ListITEM, ind, ind, compareAge);
-                Afficher(ListITEM);
+                ind = Afficher(ListITEM, FALSE);
+                qsort(ListITEM, ind, sizeof ListITEM->age, compareAge);
+                printf("*------------------------------------------*\n");
+                printf("Affichage après tri sur age (croissant)\n");
+                printf("*------------------------------------------*\n");
+                Afficher(ListITEM, TRUE);
                 break;
             case '2':
             case 'D':
             case 'd':
-                ind = Afficher(ListITEM);
-                qsort(ListITEM, ind, ind, compareAgeDec);
-                Afficher(ListITEM);
+                ind = Afficher(ListITEM, FALSE);
+                qsort(ListITEM, ind, sizeof ListITEM->age, compareAgeDec);
+                Afficher(ListITEM, TRUE);
                 break;
             case '3':
             case 'N':
             case 'n':
-                ind = Afficher(ListITEM);
-                qsort(ListITEM, ind, ind, compareName);
-                Afficher(ListITEM);
+                ind = Afficher(ListITEM, FALSE);
+                qsort(ListITEM, ind, sizeof ListITEM->nom, compareName);
+                Afficher(ListITEM, TRUE);
                 break;
             case '4':
             case 'P':
             case 'p':
-                ind = Afficher(ListITEM);
-                qsort(ListITEM, ind, ind, compareFirstname);
-                Afficher(ListITEM);
+                ind = Afficher(ListITEM, FALSE);
+                qsort(ListITEM, ind, sizeof ListITEM->prenom, compareFirstname);
+                Afficher(ListITEM, TRUE);
                 break;
             default:
                 printf("! Choix incorrect [%s] : entrer une autre valeur\n\n", cas);
