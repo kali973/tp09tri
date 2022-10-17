@@ -13,18 +13,20 @@
 #include "tri.h"
 #include "donnees.h"
 
-#define BUFFER_SIZE 200
+#define BUFFER_SIZE 8000
 
 void Choix(ITEM *listItem);
 
-void writeFile(char *fname, ITEM *listItem);
+int writeFile(char *fname, ITEM *listItem);
 
-int readFile(char *fname);
+ITEM *readFile(char *fname);
 
 void LoadDisplay(ITEM *listItem, int ind);
 
+int effacer(const char *filename);
+
 int compareAge(const void *a, const void *b) {
-    return ((ITEM *) b)->age >> ((ITEM *) a)->age;
+    return ((ITEM *) b)->age > ((ITEM *) a)->age;
 }
 
 int compareAgeDec(const void *a, const void *b) {
@@ -39,6 +41,10 @@ int compareFirstname(const void *a, const void *b) {
     return ((ITEM *) a)->prenom > ((ITEM *) b)->prenom;
 }
 
+/*--------------------------------------------*/
+/* Fonction de lecture de la liste chainée    */
+/*--------------------------------------------*/
+
 void Lire(int argc, char **argv) {
     char *pe;
     char cas[10];
@@ -48,15 +54,15 @@ void Lire(int argc, char **argv) {
     const char *nameFile = "/tri.txt";
 
     char buffer[BUFFER_SIZE];
-    if ( getcwd( buffer, BUFFER_SIZE ) == NULL ) {
-        fprintf( stderr, "Cannot get current working directory path\n" );
-        if ( errno == ERANGE ) {
-            fprintf( stderr, "Buffer size is too small.\n" );
+    if (getcwd(buffer, BUFFER_SIZE) == NULL) {
+        fprintf(stderr, "Cannot get current working directory path\n");
+        if (errno == ERANGE) {
+            fprintf(stderr, "Buffer size is too small.\n");
         }
-        exit( EXIT_FAILURE );
+        exit(EXIT_FAILURE);
     }
 
-    printf( "Current working directory: %s\n", buffer );
+    printf("Current working directory: %s\n", buffer);
 
     const char *filename = strcat(buffer, nameFile);
 
@@ -65,7 +71,7 @@ void Lire(int argc, char **argv) {
         printf("- 0 ou T - Tri\n");
         printf("- 1 ou S - Saisie des données\n");
         printf("- 2 ou L - Lecture des données\n");
-        printf("- 3 ou E - Enregistrer des données\n");
+        printf("- 3 ou E - Effacer les données\n");
         printf("- 4 ou Q - Quitter \n");
 
         scanf("%s", cas);
@@ -73,6 +79,9 @@ void Lire(int argc, char **argv) {
             case '0':
             case 't':
             case 'T':
+                if (ListITEM == NULL) {
+                    ListITEM = readFile(filename);
+                }
                 Choix(ListITEM);
                 break;
             case '1':
@@ -95,18 +104,25 @@ void Lire(int argc, char **argv) {
                     LastCell->next = pe;
                     LastCell = pe;
                 };
+                writeFile(filename, ListITEM);
                 break;
             case '2':
             case 'l':
             case 'L':
                 if (readFile(filename) != -1) {
                     printf("Chargement terminé\n\n");
+                } else {
+                    printf("Chargement non effectué\n\n");
                 }
                 break;
             case '3':
             case 'e':
             case 'E':
-                writeFile(filename, ListITEM);
+                if (effacer(filename) != 0) {
+                    printf("Non Suppression des données.\n\n");
+                } else {
+                    printf("Suppression des données terminées.\n\n");
+                }
                 break;
             case '4':
             case 'q':
@@ -115,39 +131,60 @@ void Lire(int argc, char **argv) {
                 free(pe);
                 free(LastCell);
                 free(ListITEM);
-
                 exit(0);
         }
     }
 }
 
-void writeFile(char *fname, ITEM *ListITEM) {
+/*------------------------------------------------*/
+/* Fonction de suppression des données du fichier */
+/*------------------------------------------------*/
+
+int effacer(const char *filename) {
+
+    FILE *fp;
+    fp = fopen(filename, "w");
+    if (fp == NULL) {
+        printf("in readFile, file %s open error\n", filename);
+        return -1;
+    }
+    fclose(fp);
+    return 0;
+}
+
+/*--------------------------------------------*/
+/* Fonction d'écriture de la liste chainée   */
+/*--------------------------------------------*/
+
+int writeFile(char *fname, ITEM *ListITEM) {
     FILE *fp;
     int i = 0;
 
     fp = fopen(fname, "w+");
     if (fp == NULL) {
         printf("in readFile, file %s open error\n", fname);
-        return;
+        return -1;
     }
     ITEM *pe = ListITEM;
 
     while (pe != NULL) {
         fprintf(fp, "%30s", pe->nom);
         fprintf(fp, "%20s", pe->prenom);
-        fprintf(fp, "%3d", pe->age);
+        fprintf(fp, "%d", pe->age);
+        fprintf(fp, "\n");
         pe = pe->next;
         i++;
     }
 
     printf("\n*** Nombre d'enregistrement => %d\n\n", i);
     fclose(fp);
+    return 0;
 }
 
-int readFile(char *fname) {
+ITEM *readFile(char *fname) {
     FILE *fp;
     int ind = 0;
-    int ret;
+
     ITEM *pe;
     ITEM *ListITEM = NULL;
     ITEM *LastCell = NULL;
@@ -155,53 +192,66 @@ int readFile(char *fname) {
     fp = fopen(fname, "r");
     if (fp == NULL) {
         printf("in readFile, file %s open error => File not found\n\n", fname);
-        return -1;
+        return NULL;
     }
 
-    while (fgetc(fp) != EOF){
-        pe = (ITEM *) malloc(sizeof(ITEM));
-        if (pe == NULL) {
-            printf(" no memory \n");
-            exit(1);
+    char *buffer = (char *) malloc(BUFFER_SIZE);
+    char nom[30];
+    char prenom[20];
+    int age;
+    char c;
+    while ((c = fgetc(fp)) != EOF) {
+        fgets(buffer, BUFFER_SIZE, fp);
+        if (ferror(fp)) {
+            fprintf(stderr, "Reading error with code %d\n", errno);
+            return NULL;
         }
-        ret = fscanf(fp, "%30s %20s %3d", &pe[ind].nom, &pe[ind].prenom, &pe[ind].age);
+        pe = (ITEM *) malloc(sizeof(ITEM));
+        sscanf(buffer, "%29s", nom);
+        sscanf(buffer, "%19s", prenom);
+        sscanf(buffer, "%*[^0-9]%d", &age);
 
-        if (ret == 3) {
-            strcpy(pe->nom, &pe[ind].nom);
-            strcpy(pe->prenom, &pe[ind].prenom);
-            int *v = &pe[ind].age;
-            pe->age = *v;
-            ind++;
+        strcpy(pe->nom, &nom);
+        strcpy(pe->prenom, &prenom);
+        pe->age = age;
+        ind++;
 
-            if (LastCell == NULL) {
-                ListITEM = pe;
-                LastCell = pe;
-            } else {
-                LastCell->next = pe;
-                LastCell = pe;
-            }
+        if (LastCell == NULL) {
+            ListITEM = pe;
+            LastCell = pe;
+        } else {
+            LastCell->next = pe;
+            LastCell = pe;
         }
     }
 
     fclose(fp);
     printf("\n*** Lecture des donnees fin => %d\n\n", ind);
-    if (ind > 0)  {
-        LoadDisplay(ListITEM,ind);
+    if (ind > 0) {
+        LoadDisplay(ListITEM, ind);
     }
     return ListITEM;
 }
+
+/*--------------------------------------------*/
+/* Fonction d'Affichage de la liste chainée   */
+/*--------------------------------------------*/
 
 void LoadDisplay(ITEM *listItem, int ind) {
 
     printf("\n*** Liste des donnees après chargement:\n\n");
     int i = 0;
-    for (i=0; i< ind; i++){
+    for (i = 0; i < ind; i++) {
         printf("Nom    : %s \n", listItem->nom);
         printf("Prenom : %s \n", listItem->prenom);
         printf("Age    : %d \n\n", listItem->age);
         listItem = listItem->next;
     }
 }
+
+/*--------------------------------------------*/
+/* Fonction de chargement de la liste chainée */
+/*--------------------------------------------*/
 
 void setParametersI(ITEM *pe) {
     char nom[40];
@@ -222,22 +272,32 @@ void setParametersI(ITEM *pe) {
     pe->next = NULL;
 }
 
-void Afficher(ITEM *ListITEM) {
+/*--------------------------------------------*/
+/* Fonction d'Affichage de la liste chainée   */
+/*--------------------------------------------*/
+
+int Afficher(ITEM *ListITEM) {
 
     ITEM *pe = ListITEM;
     printf("\n*** Liste des donnees :\n\n");
     int ind = 0;
-    while (pe->next != NULL ) {
+    while (pe != NULL) {
         printf("Nom    : %s \n", pe->nom);
         printf("Prenom : %s \n", pe->prenom);
         printf("Age    : %d \n\n", pe->age);
         pe = pe->next;
+        ind++;
     }
+    return ind;
 }
+
+/*--------------------------------------------*/
+/*  Fonction de tri de la liste chainée       */
+/*--------------------------------------------*/
 
 void Choix(ITEM *ListITEM) {
     char cas[10];
-
+    int ind = 0;
     while (TRUE) {
         printf("*------------------------------------------*\n");
 
@@ -259,25 +319,29 @@ void Choix(ITEM *ListITEM) {
             case '1':
             case 'A':
             case 'a':
-                qsort(ListITEM, sizeof *ListITEM / sizeof ListITEM, sizeof *ListITEM, compareAge);
+                ind = Afficher(ListITEM);
+                qsort(ListITEM, ind, ind, compareAge);
                 Afficher(ListITEM);
                 break;
             case '2':
             case 'D':
             case 'd':
-                qsort(ListITEM, sizeof *ListITEM / sizeof ListITEM, sizeof *ListITEM, compareAgeDec);
+                ind = Afficher(ListITEM);
+                qsort(ListITEM, ind, ind, compareAgeDec);
                 Afficher(ListITEM);
                 break;
             case '3':
             case 'N':
             case 'n':
-                qsort(ListITEM, sizeof *ListITEM / sizeof ListITEM, sizeof *ListITEM, compareName);
+                ind = Afficher(ListITEM);
+                qsort(ListITEM, ind, ind, compareName);
                 Afficher(ListITEM);
                 break;
             case '4':
             case 'P':
             case 'p':
-                qsort(ListITEM, sizeof *ListITEM / sizeof ListITEM, sizeof *ListITEM, compareFirstname);
+                ind = Afficher(ListITEM);
+                qsort(ListITEM, ind, ind, compareFirstname);
                 Afficher(ListITEM);
                 break;
             default:

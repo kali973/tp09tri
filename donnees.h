@@ -16,7 +16,7 @@
 
 extern void Lire(int argc, char **argv);
 
-extern void Afficher(ITEM *listItem);
+extern int Afficher(ITEM *listItem);
 
 extern void setParametersI(ITEM *pe);
 
