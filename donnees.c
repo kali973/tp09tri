@@ -323,7 +323,7 @@ void Choix(ITEM *ListITEM) {
             case 'A':
             case 'a':
                 ind = Afficher(ListITEM, FALSE);
-                qsort(ListITEM, ind, sizeof ListITEM->age, compareAge);
+                qsort(ListITEM->age, ind, sizeof ListITEM->age, compareAge);
                 printf("*------------------------------------------*\n");
                 printf("Affichage après tri sur age (croissant)\n");
                 printf("*------------------------------------------*\n");
@@ -333,21 +333,21 @@ void Choix(ITEM *ListITEM) {
             case 'D':
             case 'd':
                 ind = Afficher(ListITEM, FALSE);
-                qsort(ListITEM, ind, sizeof ListITEM->age, compareAgeDec);
+                qsort(ListITEM->age, ind, sizeof ListITEM->age, compareAgeDec);
                 Afficher(ListITEM, TRUE);
                 break;
             case '3':
             case 'N':
             case 'n':
                 ind = Afficher(ListITEM, FALSE);
-                qsort(ListITEM, ind, sizeof ListITEM->nom, compareName);
+                qsort(ListITEM->nom, ind, sizeof ListITEM->nom, compareName);
                 Afficher(ListITEM, TRUE);
                 break;
             case '4':
             case 'P':
             case 'p':
                 ind = Afficher(ListITEM, FALSE);
-                qsort(ListITEM, ind, sizeof ListITEM->prenom, compareFirstname);
+                qsort(ListITEM->prenom, ind, sizeof ListITEM->prenom, compareFirstname);
                 Afficher(ListITEM, TRUE);
                 break;
             default:

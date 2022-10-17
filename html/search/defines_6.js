@@ -1,4 +1,4 @@
-var searchData =
-    [
-        ['max_5fitem_0', ['MAX_ITEM', ['../tri_8h.html#a2ab154b213c5fed0a1ba90ac8c1232e8', 1, 'tri.h']]]
-    ];
+var searchData=
+[
+  ['hex_0',['HEX',['../_c_make_c_compiler_id_8c.html#a46d5d95daa1bef867bd0179594310ed5',1,'HEX():&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#a46d5d95daa1bef867bd0179594310ed5',1,'HEX():&#160;CMakeCXXCompilerId.cpp']]]
+];

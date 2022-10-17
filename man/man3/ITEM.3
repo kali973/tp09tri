@@ -1,4 +1,4 @@
-.TH "ITEM" 3 "Samedi 8 Octobre 2022" "Version 0.1" "tp09tri" \" -*- nroff -*-
+.TH "ITEM" 3 "Lundi 17 Octobre 2022" "Version 0.1" "tp09tri" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -12,10 +12,10 @@ ITEM
 
 .in +1c
 .ti -1c
-.RI "char \fBnom\fP [30]"
+.RI "char \fBnom\fP [\fBMAX_NAME_FR\fP]"
 .br
 .ti -1c
-.RI "char \fBprenom\fP [20]"
+.RI "char \fBprenom\fP [\fBMAX_PRENOM_FR\fP]"
 .br
 .ti -1c
 .RI "int \fBage\fP"
@@ -30,9 +30,9 @@ ITEM
 
 .SS "struct \fBITEM\fP* next"
 
-.SS "char nom[30]"
+.SS "char nom[\fBMAX_NAME_FR\fP]"
 
-.SS "char prenom[20]"
+.SS "char prenom[\fBMAX_PRENOM_FR\fP]"
 
 
 .SH "Auteur"
