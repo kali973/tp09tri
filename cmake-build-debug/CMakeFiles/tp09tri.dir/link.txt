@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/tp09tri.dir/main.c.o CMakeFiles/tp09tri.dir/donnees.c.o -o tp09tri 

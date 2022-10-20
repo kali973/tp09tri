@@ -15,37 +15,12 @@
 
 #define BUFFER_SIZE 8000
 
-void Choix(ITEM *listItem);
-
-int writeFile(char *fname, ITEM *listItem);
-
-ITEM *readFile(char *fname);
-
-void LoadDisplay(ITEM *listItem, int ind);
-
-int effacer(const char *filename);
-
-int compareAge(const void *a, const void *b) {
-    return ((ITEM *) b)->age < ((ITEM *) a)->age;
-}
-
-int compareAgeDec(const void *a, const void *b) {
-    return ((ITEM *) a)->age > ((ITEM *) b)->age;
-}
-
-int compareName(const void *a, const void *b) {
-    return ((ITEM *) a)->nom > ((ITEM *) b)->nom;
-}
-
-int compareFirstname(const void *a, const void *b) {
-    return ((ITEM *) a)->prenom > ((ITEM *) b)->prenom;
-}
-
 /*--------------------------------------------*/
 /* Fonction de lecture de la liste chainée    */
 /*--------------------------------------------*/
 
-void Lire(int argc, char **argv) {
+void Lire() {
+    int ind = 0;
     char *pe;
     char cas[10];
     ITEM *ListITEM = NULL;
@@ -76,15 +51,17 @@ void Lire(int argc, char **argv) {
         printf("- 4 ou Q - Quitter \n\n");
 
         printf("=> ");
-        scanf("%s", cas);
+        scanf("%1s", cas);
         switch (cas[0]) {
             case '0':
             case 't':
             case 'T':
-                if (ListITEM == NULL) {
-                    ListITEM = readFile(filename);
+                ind = readFile(filename, &ListITEM);
+                if (ind == 0) {
+                    printf("Fichier vide => %s\n", filename);
+                } else {
+                    Choix(ListITEM, ind);
                 }
-                Choix(ListITEM);
                 break;
             case '1':
             case 's':
@@ -111,7 +88,7 @@ void Lire(int argc, char **argv) {
             case '2':
             case 'l':
             case 'L':
-                if (readFile(filename) != -1) {
+                if (readFile(filename, &ListITEM) != -1) {
                     printf("Chargement terminé\n\n");
                 } else {
                     printf("Chargement non effectué\n\n");
@@ -129,10 +106,18 @@ void Lire(int argc, char **argv) {
             case '4':
             case 'q':
             case 'Q':
-
-                free(pe);
-                free(LastCell);
-                free(ListITEM);
+                if (pe != NULL) {
+                    free(pe);
+                    pe = NULL;
+                }
+                if (LastCell != NULL) {
+                    free(LastCell);
+                    LastCell = NULL;
+                }
+                if (ListITEM != NULL) {
+                    free(ListITEM);
+                    ListITEM = NULL;
+                }
                 exit(0);
         }
     }
@@ -180,7 +165,11 @@ int writeFile(char *fname, ITEM *ListITEM) {
     return 0;
 }
 
-ITEM *readFile(char *fname) {
+/*--------------------------------------------*/
+/* Fonction de lecture de la liste chainée   */
+/*--------------------------------------------*/
+
+int readFile(char *fname, ITEM **List) {
     FILE *fp;
     int ind = 0;
 
@@ -191,19 +180,19 @@ ITEM *readFile(char *fname) {
     fp = fopen(fname, "r");
     if (fp == NULL) {
         printf("in readFile, file %s open error => File not found\n\n", fname);
-        return NULL;
+        return -1;
     }
 
     char *buffer = (char *) malloc(BUFFER_SIZE);
-    char nom[30];
-    char prenom[20];
+    char nom[MAX_NAME_FR];
+    char prenom[MAX_PRENOM_FR];
     int age;
-    char c;
-    while ((c = fgetc(fp)) != EOF) {
+
+    while ((fgetc(fp)) != EOF) {
         fgets(buffer, BUFFER_SIZE, fp);
         if (ferror(fp)) {
             fprintf(stderr, "Reading error with code %d\n", errno);
-            return NULL;
+            return -1;
         }
         pe = (ITEM *) malloc(sizeof(ITEM));
 
@@ -222,11 +211,14 @@ ITEM *readFile(char *fname) {
     }
 
     fclose(fp);
+    free(buffer);
+    buffer = NULL;
     printf("\n*** Lecture des donnees fin => %d\n\n", ind);
     if (ind > 0) {
         LoadDisplay(ListITEM, ind);
     }
-    return ListITEM;
+    *List = ListITEM;
+    return ind;
 }
 
 /*--------------------------------------------*/
@@ -236,7 +228,8 @@ ITEM *readFile(char *fname) {
 void LoadDisplay(ITEM *listItem, int ind) {
 
     printf("\n*** Liste des donnees après chargement:\n\n");
-    int i = 0;
+
+    int i;
     for (i = 0; i < ind; i++) {
         printf("Nom    : %s \n", listItem->nom);
         printf("Prenom : %s \n", listItem->prenom);
@@ -250,16 +243,16 @@ void LoadDisplay(ITEM *listItem, int ind) {
 /*--------------------------------------------*/
 
 void setParametersI(ITEM *pe) {
-    char nom[40];
-    char prenom[20];
+    char nom[MAX_NAME_FR];
+    char prenom[MAX_PRENOM_FR];
     int age;
     printf("*----------------------------*\n");
     printf("> nom    : ");
-    scanf("%s", nom);
+    scanf("%29s", nom);
     strcpy(pe->nom, nom);
 
     printf("> prenom : ");
-    scanf("%s", prenom);
+    scanf("%19s", prenom);
     strcpy(pe->prenom, prenom);
 
     printf("> age    : ");
@@ -272,30 +265,76 @@ void setParametersI(ITEM *pe) {
 /* Fonction d'Affichage de la liste chainée   */
 /*--------------------------------------------*/
 
-int Afficher(ITEM *ListITEM, int showON) {
+int Afficher(ITEM *ListITEM) {
 
-    ITEM *pe = ListITEM;
-
+    ITEM *pe;
+    pe = ListITEM;
     int ind = 0;
     while (pe != NULL) {
-        if (showON) {
-            printf("Nom    : %s \n", pe->nom);
-            printf("Prenom : %s \n", pe->prenom);
-            printf("Age    : %d \n\n", pe->age);
-        }
+        printf("Nom    : %s \n", pe->nom);
+        printf("Prenom : %s \n", pe->prenom);
+        printf("Age    : %d \n\n", pe->age);
         pe = pe->next;
         ind++;
     }
-    return ind;
+}
+
+/*--------------------------------------------*/
+/*  Fonction de tri                           */
+/*--------------------------------------------*/
+
+void Trier(ITEM *List, int ind, char cas) {
+
+    int i, j;
+    int index = 0;
+    ITEM swap;
+
+    switch (cas) {
+        case '1':
+            for (i = 0; i < ind; i++) {
+                for (j = 0; j < ind - 1; j++) {
+                    if (List[j].age < List[j + 1].age) {
+                        swap = List[j];
+                        List[j] = List[j + 1];
+                        List[j + 1] = swap;
+                    }
+                }
+            }
+            break;
+        case '2':
+
+            break;
+        case '3':
+            for (i = 0; i < ind; i++) {
+                for (j = 0; j < ind - 1; j++) {
+                    if (List[j].nom < List[j + 1].nom) {
+                        swap = List[j];
+                        List[j] = List[j + 1];
+                        List[j + 1] = swap;
+                    }
+                }
+            }
+            break;
+        case '4':
+            for (i = 0; i < ind; i++) {
+                for (j = 0; j < ind - 1; j++) {
+                    if (List[j].prenom < List[j + 1].prenom) {
+                        swap = List[j];
+                        List[j] = List[j + 1];
+                        List[j + 1] = swap;
+                    }
+                }
+            }
+            break;
+    }
 }
 
 /*--------------------------------------------*/
 /*  Fonction de tri de la liste chainée       */
 /*--------------------------------------------*/
 
-void Choix(ITEM *ListITEM) {
+void Choix(ITEM *listItem, int ind) {
     char cas[10];
-    int ind = 0;
     while (TRUE) {
 
         printf("\033[H\033[2J");
@@ -317,38 +356,42 @@ void Choix(ITEM *ListITEM) {
             case '0':
             case 'q':
             case 'Q':
-
                 exit(0);
             case '1':
             case 'A':
             case 'a':
-                ind = Afficher(ListITEM, FALSE);
-                qsort(ListITEM->age, ind, sizeof ListITEM->age, compareAge);
                 printf("*------------------------------------------*\n");
                 printf("Affichage après tri sur age (croissant)\n");
                 printf("*------------------------------------------*\n");
-                Afficher(ListITEM, TRUE);
+                Trier(listItem, ind, cas[0]);
+                Afficher(listItem);
                 break;
             case '2':
             case 'D':
             case 'd':
-                ind = Afficher(ListITEM, FALSE);
-                qsort(ListITEM->age, ind, sizeof ListITEM->age, compareAgeDec);
-                Afficher(ListITEM, TRUE);
+                printf("*------------------------------------------*\n");
+                printf("Affichage après tri sur age (décroissant)\n");
+                printf("*------------------------------------------*\n");
+                Trier(listItem, ind, cas[0]);
+                Afficher(listItem);
                 break;
             case '3':
             case 'N':
             case 'n':
-                ind = Afficher(ListITEM, FALSE);
-                qsort(ListITEM->nom, ind, sizeof ListITEM->nom, compareName);
-                Afficher(ListITEM, TRUE);
+                printf("*------------------------------------------*\n");
+                printf("Affichage après tri sur nom (croissant)\n");
+                printf("*------------------------------------------*\n");
+                Trier(listItem, ind, cas[0]);
+                Afficher(listItem);
                 break;
             case '4':
             case 'P':
             case 'p':
-                ind = Afficher(ListITEM, FALSE);
-                qsort(ListITEM->prenom, ind, sizeof ListITEM->prenom, compareFirstname);
-                Afficher(ListITEM, TRUE);
+                printf("*------------------------------------------*\n");
+                printf("Affichage après tri sur prénom (croissant)\n");
+                printf("*------------------------------------------*\n");
+                Trier(listItem, ind, cas[0]);
+                Afficher(listItem);
                 break;
             default:
                 printf("! Choix incorrect [%s] : entrer une autre valeur\n\n", cas);
