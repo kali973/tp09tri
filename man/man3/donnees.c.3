@@ -1,4 +1,4 @@
-.TH "/root/CLionProjectsTP/tp09tri/donnees.c" 3 "Lundi 17 Octobre 2022" "Version 0.1" "tp09tri" \" -*- nroff -*-
+.TH "/root/CLionProjectsTP/tp09tri/donnees.c" 3 "Jeudi 20 Octobre 2022" "Version 0.1" "tp09tri" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -34,40 +34,31 @@
 
 .in +1c
 .ti -1c
-.RI "void \fBChoix\fP (\fBITEM\fP *listItem)"
-.br
-.ti -1c
-.RI "int \fBwriteFile\fP (char *fname, \fBITEM\fP *listItem)"
-.br
-.ti -1c
-.RI "\fBITEM\fP * \fBreadFile\fP (char *fname)"
-.br
-.ti -1c
-.RI "void \fBLoadDisplay\fP (\fBITEM\fP *listItem, int ind)"
+.RI "void \fBLire\fP ()"
 .br
 .ti -1c
 .RI "int \fBeffacer\fP (const char *filename)"
 .br
 .ti -1c
-.RI "int \fBcompareAge\fP (const void *a, const void *b)"
+.RI "int \fBwriteFile\fP (char *fname, \fBITEM\fP *ListITEM)"
 .br
 .ti -1c
-.RI "int \fBcompareAgeDec\fP (const void *a, const void *b)"
+.RI "int \fBreadFile\fP (char *fname, \fBITEM\fP **List)"
 .br
 .ti -1c
-.RI "int \fBcompareName\fP (const void *a, const void *b)"
-.br
-.ti -1c
-.RI "int \fBcompareFirstname\fP (const void *a, const void *b)"
-.br
-.ti -1c
-.RI "void \fBLire\fP (int argc, char **argv)"
+.RI "void \fBLoadDisplay\fP (\fBITEM\fP *listItem, int ind)"
 .br
 .ti -1c
 .RI "void \fBsetParametersI\fP (\fBITEM\fP *pe)"
 .br
 .ti -1c
-.RI "int \fBAfficher\fP (\fBITEM\fP *ListITEM, int showON)"
+.RI "int \fBAfficher\fP (\fBITEM\fP *ListITEM)"
+.br
+.ti -1c
+.RI "void \fBTrier\fP (\fBITEM\fP *List, int ind, char cas)"
+.br
+.ti -1c
+.RI "void \fBChoix\fP (\fBITEM\fP *listItem, int ind)"
 .br
 .in -1c
 .SH "Documentation des macros"
@@ -76,29 +67,23 @@
 
 .SH "Documentation des fonctions"
 .PP 
-.SS "int Afficher (\fBITEM\fP * ListITEM, int showON)"
+.SS "int Afficher (\fBITEM\fP * ListITEM)"
 
-.SS "void Choix (\fBITEM\fP * listItem)"
-
-.SS "int compareAge (const void * a, const void * b)"
-
-.SS "int compareAgeDec (const void * a, const void * b)"
-
-.SS "int compareFirstname (const void * a, const void * b)"
-
-.SS "int compareName (const void * a, const void * b)"
+.SS "void Choix (\fBITEM\fP * listItem, int ind)"
 
 .SS "int effacer (const char * filename)"
 
-.SS "void Lire (int argc, char ** argv)"
+.SS "void Lire ()"
 
 .SS "void LoadDisplay (\fBITEM\fP * listItem, int ind)"
 
-.SS "\fBITEM\fP * readFile (char * fname)"
+.SS "int readFile (char * fname, \fBITEM\fP ** List)"
 
 .SS "void setParametersI (\fBITEM\fP * pe)"
 
-.SS "int writeFile (char * fname, \fBITEM\fP * listItem)"
+.SS "void Trier (\fBITEM\fP * List, int ind, char cas)"
+
+.SS "int writeFile (char * fname, \fBITEM\fP * ListITEM)"
 
 .SH "Auteur"
 .PP 

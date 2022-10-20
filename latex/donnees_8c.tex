@@ -8,8 +8,7 @@
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}tri.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}donnees.\+h\char`\"{}}\newline
-Graphe des dépendances par inclusion de donnees.\+c\+:
-\nopagebreak
+Graphe des dépendances par inclusion de donnees.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,29 +23,23 @@ Graphe des dépendances par inclusion de donnees.\+c\+:
 \doxysubsection*{Fonctions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{donnees_8c_a7c3329418361e055485010500abd2cd5}{Choix}} (\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$list\+Item)
-\item 
-int \mbox{\hyperlink{donnees_8c_a01eb90da5d5c83ec1c505e0a06e4d197}{write\+File}} (char $\ast$fname, \mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$list\+Item)
-\item 
-\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$ \mbox{\hyperlink{donnees_8c_ae19a16586f26e779ab12f41c4901d90b}{read\+File}} (char $\ast$fname)
-\item 
-void \mbox{\hyperlink{donnees_8c_af023e025e5564c87c55abce7c9595cd2}{Load\+Display}} (\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$list\+Item, int ind)
+void \mbox{\hyperlink{donnees_8c_a4f979f8c3d4c1b7990c21d7cb12a60d5}{Lire}} ()
 \item 
 int \mbox{\hyperlink{donnees_8c_a8cb13da8bd7c1f01d2fb8d3973be5f93}{effacer}} (const char $\ast$filename)
 \item 
-int \mbox{\hyperlink{donnees_8c_af256838caa5143947cf09cf43ecca655}{compare\+Age}} (const void $\ast$a, const void $\ast$b)
+int \mbox{\hyperlink{donnees_8c_af75b5682d605d34019f1af93d14bce38}{write\+File}} (char $\ast$fname, \mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$List\+ITEM)
 \item 
-int \mbox{\hyperlink{donnees_8c_ab984dcf05e10b3691f553fe0cbbc7bd8}{compare\+Age\+Dec}} (const void $\ast$a, const void $\ast$b)
+int \mbox{\hyperlink{donnees_8c_a0909b104b39a3ebc387cbdfbf2100cdc}{read\+File}} (char $\ast$fname, \mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$$\ast$List)
 \item 
-int \mbox{\hyperlink{donnees_8c_af7cd36cf39dc844567201d130b06fe09}{compare\+Name}} (const void $\ast$a, const void $\ast$b)
-\item 
-int \mbox{\hyperlink{donnees_8c_a9a0cb89a788171ec29a416cf9b3aca33}{compare\+Firstname}} (const void $\ast$a, const void $\ast$b)
-\item 
-void \mbox{\hyperlink{donnees_8c_aa2badb4e21dbf15c765200766b473d37}{Lire}} (int argc, char $\ast$$\ast$argv)
+void \mbox{\hyperlink{donnees_8c_af023e025e5564c87c55abce7c9595cd2}{Load\+Display}} (\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$list\+Item, int ind)
 \item 
 void \mbox{\hyperlink{donnees_8c_af23347ce972429b88b0568fc054f7c8f}{set\+ParametersI}} (\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$pe)
 \item 
-int \mbox{\hyperlink{donnees_8c_a3cb7129d4891e750db44992a370e046c}{Afficher}} (\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$List\+ITEM, int show\+ON)
+int \mbox{\hyperlink{donnees_8c_aefb92276d1965c3cd6d55286cf20f1ad}{Afficher}} (\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$List\+ITEM)
+\item 
+void \mbox{\hyperlink{donnees_8c_a3e402879d7e60424d6dc64671971ea07}{Trier}} (\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$List, int ind, char cas)
+\item 
+void \mbox{\hyperlink{donnees_8c_a56588376b4535efb7574ee9338c8b710}{Choix}} (\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$list\+Item, int ind)
 \end{DoxyCompactItemize}
 
 
@@ -60,41 +53,17 @@ int \mbox{\hyperlink{donnees_8c_a3cb7129d4891e750db44992a370e046c}{Afficher}} (\
 
 
 \doxysubsection{Documentation des fonctions}
-\mbox{\Hypertarget{donnees_8c_a3cb7129d4891e750db44992a370e046c}\label{donnees_8c_a3cb7129d4891e750db44992a370e046c}} 
+\mbox{\Hypertarget{donnees_8c_aefb92276d1965c3cd6d55286cf20f1ad}\label{donnees_8c_aefb92276d1965c3cd6d55286cf20f1ad}} 
 \index{donnees.c@{donnees.c}!Afficher@{Afficher}}
 \index{Afficher@{Afficher}!donnees.c@{donnees.c}}
 \doxysubsubsection{\texorpdfstring{Afficher()}{Afficher()}}
-{\footnotesize\ttfamily int Afficher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$}]{List\+ITEM,  }\item[{int}]{show\+ON }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Afficher (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$}]{List\+ITEM }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{donnees_8c_a7c3329418361e055485010500abd2cd5}\label{donnees_8c_a7c3329418361e055485010500abd2cd5}} 
+\mbox{\Hypertarget{donnees_8c_a56588376b4535efb7574ee9338c8b710}\label{donnees_8c_a56588376b4535efb7574ee9338c8b710}} 
 \index{donnees.c@{donnees.c}!Choix@{Choix}}
 \index{Choix@{Choix}!donnees.c@{donnees.c}}
 \doxysubsubsection{\texorpdfstring{Choix()}{Choix()}}
-{\footnotesize\ttfamily void Choix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$}]{list\+Item }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{donnees_8c_af256838caa5143947cf09cf43ecca655}\label{donnees_8c_af256838caa5143947cf09cf43ecca655}} 
-\index{donnees.c@{donnees.c}!compareAge@{compareAge}}
-\index{compareAge@{compareAge}!donnees.c@{donnees.c}}
-\doxysubsubsection{\texorpdfstring{compareAge()}{compareAge()}}
-{\footnotesize\ttfamily int compare\+Age (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{donnees_8c_ab984dcf05e10b3691f553fe0cbbc7bd8}\label{donnees_8c_ab984dcf05e10b3691f553fe0cbbc7bd8}} 
-\index{donnees.c@{donnees.c}!compareAgeDec@{compareAgeDec}}
-\index{compareAgeDec@{compareAgeDec}!donnees.c@{donnees.c}}
-\doxysubsubsection{\texorpdfstring{compareAgeDec()}{compareAgeDec()}}
-{\footnotesize\ttfamily int compare\+Age\+Dec (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{donnees_8c_a9a0cb89a788171ec29a416cf9b3aca33}\label{donnees_8c_a9a0cb89a788171ec29a416cf9b3aca33}} 
-\index{donnees.c@{donnees.c}!compareFirstname@{compareFirstname}}
-\index{compareFirstname@{compareFirstname}!donnees.c@{donnees.c}}
-\doxysubsubsection{\texorpdfstring{compareFirstname()}{compareFirstname()}}
-{\footnotesize\ttfamily int compare\+Firstname (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{donnees_8c_af7cd36cf39dc844567201d130b06fe09}\label{donnees_8c_af7cd36cf39dc844567201d130b06fe09}} 
-\index{donnees.c@{donnees.c}!compareName@{compareName}}
-\index{compareName@{compareName}!donnees.c@{donnees.c}}
-\doxysubsubsection{\texorpdfstring{compareName()}{compareName()}}
-{\footnotesize\ttfamily int compare\+Name (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Choix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$}]{list\+Item,  }\item[{int}]{ind }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{donnees_8c_a8cb13da8bd7c1f01d2fb8d3973be5f93}\label{donnees_8c_a8cb13da8bd7c1f01d2fb8d3973be5f93}} 
 \index{donnees.c@{donnees.c}!effacer@{effacer}}
@@ -102,11 +71,11 @@ int \mbox{\hyperlink{donnees_8c_a3cb7129d4891e750db44992a370e046c}{Afficher}} (\
 \doxysubsubsection{\texorpdfstring{effacer()}{effacer()}}
 {\footnotesize\ttfamily int effacer (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{donnees_8c_aa2badb4e21dbf15c765200766b473d37}\label{donnees_8c_aa2badb4e21dbf15c765200766b473d37}} 
+\mbox{\Hypertarget{donnees_8c_a4f979f8c3d4c1b7990c21d7cb12a60d5}\label{donnees_8c_a4f979f8c3d4c1b7990c21d7cb12a60d5}} 
 \index{donnees.c@{donnees.c}!Lire@{Lire}}
 \index{Lire@{Lire}!donnees.c@{donnees.c}}
 \doxysubsubsection{\texorpdfstring{Lire()}{Lire()}}
-{\footnotesize\ttfamily void Lire (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Lire (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{donnees_8c_af023e025e5564c87c55abce7c9595cd2}\label{donnees_8c_af023e025e5564c87c55abce7c9595cd2}} 
 \index{donnees.c@{donnees.c}!LoadDisplay@{LoadDisplay}}
@@ -114,11 +83,11 @@ int \mbox{\hyperlink{donnees_8c_a3cb7129d4891e750db44992a370e046c}{Afficher}} (\
 \doxysubsubsection{\texorpdfstring{LoadDisplay()}{LoadDisplay()}}
 {\footnotesize\ttfamily void Load\+Display (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$}]{list\+Item,  }\item[{int}]{ind }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{donnees_8c_ae19a16586f26e779ab12f41c4901d90b}\label{donnees_8c_ae19a16586f26e779ab12f41c4901d90b}} 
+\mbox{\Hypertarget{donnees_8c_a0909b104b39a3ebc387cbdfbf2100cdc}\label{donnees_8c_a0909b104b39a3ebc387cbdfbf2100cdc}} 
 \index{donnees.c@{donnees.c}!readFile@{readFile}}
 \index{readFile@{readFile}!donnees.c@{donnees.c}}
 \doxysubsubsection{\texorpdfstring{readFile()}{readFile()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$ read\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{fname }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int read\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{fname,  }\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$$\ast$}]{List }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{donnees_8c_af23347ce972429b88b0568fc054f7c8f}\label{donnees_8c_af23347ce972429b88b0568fc054f7c8f}} 
 \index{donnees.c@{donnees.c}!setParametersI@{setParametersI}}
@@ -126,9 +95,15 @@ int \mbox{\hyperlink{donnees_8c_a3cb7129d4891e750db44992a370e046c}{Afficher}} (\
 \doxysubsubsection{\texorpdfstring{setParametersI()}{setParametersI()}}
 {\footnotesize\ttfamily void set\+ParametersI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$}]{pe }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{donnees_8c_a01eb90da5d5c83ec1c505e0a06e4d197}\label{donnees_8c_a01eb90da5d5c83ec1c505e0a06e4d197}} 
+\mbox{\Hypertarget{donnees_8c_a3e402879d7e60424d6dc64671971ea07}\label{donnees_8c_a3e402879d7e60424d6dc64671971ea07}} 
+\index{donnees.c@{donnees.c}!Trier@{Trier}}
+\index{Trier@{Trier}!donnees.c@{donnees.c}}
+\doxysubsubsection{\texorpdfstring{Trier()}{Trier()}}
+{\footnotesize\ttfamily void Trier (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$}]{List,  }\item[{int}]{ind,  }\item[{char}]{cas }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{donnees_8c_af75b5682d605d34019f1af93d14bce38}\label{donnees_8c_af75b5682d605d34019f1af93d14bce38}} 
 \index{donnees.c@{donnees.c}!writeFile@{writeFile}}
 \index{writeFile@{writeFile}!donnees.c@{donnees.c}}
 \doxysubsubsection{\texorpdfstring{writeFile()}{writeFile()}}
-{\footnotesize\ttfamily int write\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{fname,  }\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$}]{list\+Item }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int write\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{fname,  }\item[{\mbox{\hyperlink{struct_i_t_e_m}{ITEM}} $\ast$}]{List\+ITEM }\end{DoxyParamCaption})}
 
