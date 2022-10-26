@@ -5,8 +5,9 @@ var indexSectionsWithContent =
         2: "cdmrt",
         3: "acelmrstw",
         4: "ainp",
-        5: "_abcdfhmpst",
-        6: "r"
+        5: "i",
+        6: "_abcdfhmpst",
+        7: "r"
     };
 
 var indexSectionNames =
@@ -16,8 +17,9 @@ var indexSectionNames =
         2: "files",
         3: "functions",
         4: "variables",
-        5: "defines",
-        6: "pages"
+        5: "typedefs",
+        6: "defines",
+        7: "pages"
     };
 
 var indexSectionLabels =
@@ -27,7 +29,8 @@ var indexSectionLabels =
         2: "Fichiers",
         3: "Fonctions",
         4: "Variables",
-        5: "Macros",
-        6: "Pages"
+        5: "Définitions de type",
+        6: "Macros",
+        7: "Pages"
     };
 

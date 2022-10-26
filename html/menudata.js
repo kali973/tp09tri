@@ -62,6 +62,7 @@ var menudata = {
                         },
                         {text: "Fonctions", url: "globals_func.html"},
                         {text: "Variables", url: "globals_vars.html"},
+                        {text: "Définitions de type", url: "globals_type.html"},
                         {text: "Macros", url: "globals_defs.html"}]
                 }]
         }]

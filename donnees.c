@@ -319,7 +319,8 @@ int Sort(ITEM *List, int ind, char cas) {
 int Trier(ITEM *List, int ind, char cas) {
 
     int i, j, k, tempKey;
-    char tempData[30];
+    char tempData[MAX_NAME_FR];
+    char tempPrenom[MAX_PRENOM_FR];
     struct ITEM *current;
     struct ITEM *next;
 
@@ -329,7 +330,7 @@ int Trier(ITEM *List, int ind, char cas) {
                 current = List;
                 next = List->next;
 
-                for (j = 1; j < ind; j++) {
+                while (next != NULL) {
 
                     if (current->age > next->age) {
                         strcpy(tempData, current->nom);
@@ -354,7 +355,7 @@ int Trier(ITEM *List, int ind, char cas) {
                 current = List;
                 next = List->next;
 
-                for (j = 1; j < ind; j++) {
+                while (next != NULL) {
 
                     if (current->age < next->age) {
                         strcpy(tempData, current->nom);
@@ -379,9 +380,9 @@ int Trier(ITEM *List, int ind, char cas) {
                 current = List;
                 next = List->next;
 
-                for (j = 1; j < ind; j++) {
+                while (next != NULL) {
 
-                    if (current->nom > next->nom) {
+                    if (strcmp(current->nom, next->nom) > 0) {
                         strcpy(tempData, current->nom);
                         strcpy(current->nom, next->nom);
                         strcpy(next->nom, tempData);
@@ -404,16 +405,16 @@ int Trier(ITEM *List, int ind, char cas) {
                 current = List;
                 next = List->next;
 
-                for (j = 1; j < ind; j++) {
+                while (next != NULL) {
 
-                    if (current->prenom > next->prenom) {
+                    if (strcmp(current->prenom, next->prenom) > 0) {
                         strcpy(tempData, current->nom);
                         strcpy(current->nom, next->nom);
                         strcpy(next->nom, tempData);
 
-                        strcpy(tempData, current->prenom);
+                        strcpy(tempPrenom, current->prenom);
                         strcpy(current->prenom, next->prenom);
-                        strcpy(next->prenom, tempData);
+                        strcpy(next->prenom, tempPrenom);
 
                         tempKey = current->age;
                         current->age = next->age;

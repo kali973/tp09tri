@@ -8,6 +8,7 @@ var donnees_8c =
         ["LoadDisplay", "donnees_8c.html#af023e025e5564c87c55abce7c9595cd2", null],
         ["readFile", "donnees_8c.html#a0909b104b39a3ebc387cbdfbf2100cdc", null],
         ["setParametersI", "donnees_8c.html#af23347ce972429b88b0568fc054f7c8f", null],
-        ["Trier", "donnees_8c.html#a3e402879d7e60424d6dc64671971ea07", null],
+        ["Sort", "donnees_8c.html#ae02084b9e72d724fcaba636b78c4bb31", null],
+        ["Trier", "donnees_8c.html#a22b559367cdbd3ed0451c530ec51cdfa", null],
         ["writeFile", "donnees_8c.html#af75b5682d605d34019f1af93d14bce38", null]
     ];

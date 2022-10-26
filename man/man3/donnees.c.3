@@ -1,4 +1,4 @@
-.TH "/root/CLionProjectsTP/tp09tri/donnees.c" 3 "Jeudi 20 Octobre 2022" "Version 0.1" "tp09tri" \" -*- nroff -*-
+.TH "/root/CLionProjectsTP/tp09tri/donnees.c" 3 "Mercredi 26 Octobre 2022" "Version 0.1" "tp09tri" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -55,7 +55,10 @@
 .RI "int \fBAfficher\fP (\fBITEM\fP *ListITEM)"
 .br
 .ti -1c
-.RI "void \fBTrier\fP (\fBITEM\fP *List, int ind, char cas)"
+.RI "int \fBSort\fP (\fBITEM\fP *List, int ind, char cas)"
+.br
+.ti -1c
+.RI "int \fBTrier\fP (\fBITEM\fP *List, int ind, char cas)"
 .br
 .ti -1c
 .RI "void \fBChoix\fP (\fBITEM\fP *listItem, int ind)"
@@ -81,7 +84,9 @@
 
 .SS "void setParametersI (\fBITEM\fP * pe)"
 
-.SS "void Trier (\fBITEM\fP * List, int ind, char cas)"
+.SS "int Sort (\fBITEM\fP * List, int ind, char cas)"
+
+.SS "int Trier (\fBITEM\fP * List, int ind, char cas)"
 
 .SS "int writeFile (char * fname, \fBITEM\fP * ListITEM)"
 

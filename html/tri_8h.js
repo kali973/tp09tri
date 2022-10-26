@@ -5,5 +5,6 @@ var tri_8h =
         ["MAX_ITEM", "tri_8h.html#a2ab154b213c5fed0a1ba90ac8c1232e8", null],
         ["MAX_NAME_FR", "tri_8h.html#a2ab81e04395009453afac52f6e9b8333", null],
         ["MAX_PRENOM_FR", "tri_8h.html#aea71a89a561e0c8f25539cba684fbbce", null],
-        ["TRUE", "tri_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d", null]
+        ["TRUE", "tri_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d", null],
+        ["ITEM", "tri_8h.html#a5b7bc0e454b88f7af72368d476559121", null]
     ];
