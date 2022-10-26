@@ -279,39 +279,6 @@ int Afficher(ITEM *ListITEM) {
     }
 }
 
-int Sort(ITEM *List, int ind, char cas) {
-
-    int i, j, k, tempKey;
-    char tempData[30];
-    struct ITEM *current;
-    struct ITEM *next;
-
-    for (i = 0; i < ind - 1; i++, ind--) {
-        current = List;
-        next = List->next;
-
-        for (j = 1; j < ind; j++) {
-
-            if (current->nom > next->nom) {
-                strcpy(tempData, current->nom);
-                strcpy(current->nom, next->nom);
-                strcpy(next->nom, tempData);
-
-                strcpy(tempData, current->prenom);
-                strcpy(current->prenom, next->prenom);
-                strcpy(next->prenom, tempData);
-
-                tempKey = current->age;
-                current->age = next->age;
-                next->age = tempKey;
-            }
-            current = current->next;
-            next = next->next;
-        }
-    }
-    return List;
-}
-
 /*--------------------------------------------*/
 /*  Fonction de tri                           */
 /*--------------------------------------------*/

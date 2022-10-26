@@ -22,48 +22,36 @@
 
  @licend  The above is the entire license notice for the JavaScript code in this file
 */
-var menudata = {
-    children: [
-        {text: "Page principale", url: "index.html"},
-        {text: "Pages associées", url: "pages.html"},
-        {
-            text: "Structures de données", url: "annotated.html", children: [
-                {text: "Structures de données", url: "annotated.html"},
-                {text: "Index des structures de données", url: "classes.html"},
-                {
-                    text: "Champs de donnée", url: "functions.html", children: [
-                        {text: "Tout", url: "functions.html"},
-                        {text: "Variables", url: "functions_vars.html"}]
-                }]
-        },
-        {
-            text: "Fichiers", url: "files.html", children: [
-                {text: "Liste des fichiers", url: "files.html"},
-                {
-                    text: "Variables globale", url: "globals.html", children: [
-                        {
-                            text: "Tout", url: "globals.html", children: [
-                                {text: "_", url: "globals.html#index__5F"},
-                                {text: "a", url: "globals.html#index_a"},
-                                {text: "b", url: "globals.html#index_b"},
-                                {text: "c", url: "globals.html#index_c"},
-                                {text: "d", url: "globals.html#index_d"},
-                                {text: "e", url: "globals.html#index_e"},
-                                {text: "f", url: "globals.html#index_f"},
-                                {text: "h", url: "globals.html#index_h"},
-                                {text: "i", url: "globals.html#index_i"},
-                                {text: "l", url: "globals.html#index_l"},
-                                {text: "m", url: "globals.html#index_m"},
-                                {text: "p", url: "globals.html#index_p"},
-                                {text: "r", url: "globals.html#index_r"},
-                                {text: "s", url: "globals.html#index_s"},
-                                {text: "t", url: "globals.html#index_t"},
-                                {text: "w", url: "globals.html#index_w"}]
-                        },
-                        {text: "Fonctions", url: "globals_func.html"},
-                        {text: "Variables", url: "globals_vars.html"},
-                        {text: "Définitions de type", url: "globals_type.html"},
-                        {text: "Macros", url: "globals_defs.html"}]
-                }]
-        }]
-}
+var menudata={children:[
+{text:"Page principale",url:"index.html"},
+{text:"Pages associées",url:"pages.html"},
+{text:"Structures de données",url:"annotated.html",children:[
+{text:"Structures de données",url:"annotated.html"},
+{text:"Index des structures de données",url:"classes.html"},
+{text:"Champs de donnée",url:"functions.html",children:[
+{text:"Tout",url:"functions.html"},
+{text:"Variables",url:"functions_vars.html"}]}]},
+{text:"Fichiers",url:"files.html",children:[
+{text:"Liste des fichiers",url:"files.html"},
+{text:"Variables globale",url:"globals.html",children:[
+{text:"Tout",url:"globals.html",children:[
+{text:"_",url:"globals.html#index__5F"},
+{text:"a",url:"globals.html#index_a"},
+{text:"b",url:"globals.html#index_b"},
+{text:"c",url:"globals.html#index_c"},
+{text:"d",url:"globals.html#index_d"},
+{text:"e",url:"globals.html#index_e"},
+{text:"f",url:"globals.html#index_f"},
+{text:"h",url:"globals.html#index_h"},
+{text:"i",url:"globals.html#index_i"},
+{text:"l",url:"globals.html#index_l"},
+{text:"m",url:"globals.html#index_m"},
+{text:"p",url:"globals.html#index_p"},
+{text:"r",url:"globals.html#index_r"},
+{text:"s",url:"globals.html#index_s"},
+{text:"t",url:"globals.html#index_t"},
+{text:"w",url:"globals.html#index_w"}]},
+{text:"Fonctions",url:"globals_func.html"},
+{text:"Variables",url:"globals_vars.html"},
+{text:"Définitions de type",url:"globals_type.html"},
+{text:"Macros",url:"globals_defs.html"}]}]}]}
