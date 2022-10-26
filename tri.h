@@ -16,7 +16,7 @@
 #define  MAX_NAME_FR 30
 #define  MAX_PRENOM_FR 20
 
-typedef struct {
+typedef struct ITEM {
     char nom[MAX_NAME_FR];
     char prenom[MAX_PRENOM_FR];
     int age;

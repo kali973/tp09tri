@@ -279,54 +279,153 @@ int Afficher(ITEM *ListITEM) {
     }
 }
 
+int Sort(ITEM *List, int ind, char cas) {
+
+    int i, j, k, tempKey;
+    char tempData[30];
+    struct ITEM *current;
+    struct ITEM *next;
+
+    for (i = 0; i < ind - 1; i++, ind--) {
+        current = List;
+        next = List->next;
+
+        for (j = 1; j < ind; j++) {
+
+            if (current->nom > next->nom) {
+                strcpy(tempData, current->nom);
+                strcpy(current->nom, next->nom);
+                strcpy(next->nom, tempData);
+
+                strcpy(tempData, current->prenom);
+                strcpy(current->prenom, next->prenom);
+                strcpy(next->prenom, tempData);
+
+                tempKey = current->age;
+                current->age = next->age;
+                next->age = tempKey;
+            }
+            current = current->next;
+            next = next->next;
+        }
+    }
+    return List;
+}
+
 /*--------------------------------------------*/
 /*  Fonction de tri                           */
 /*--------------------------------------------*/
 
-void Trier(ITEM *List, int ind, char cas) {
+int Trier(ITEM *List, int ind, char cas) {
 
-    int i, j;
-    int index = 0;
-    ITEM swap;
+    int i, j, k, tempKey;
+    char tempData[30];
+    struct ITEM *current;
+    struct ITEM *next;
 
     switch (cas) {
         case '1':
-            for (i = 0; i < ind; i++) {
-                for (j = 0; j < ind - 1; j++) {
-                    if (List[j].age < List[j + 1].age) {
-                        swap = List[j];
-                        List[j] = List[j + 1];
-                        List[j + 1] = swap;
+            for (i = 0; i < ind; i++, ind--) {
+                current = List;
+                next = List->next;
+
+                for (j = 1; j < ind; j++) {
+
+                    if (current->age > next->age) {
+                        strcpy(tempData, current->nom);
+                        strcpy(current->nom, next->nom);
+                        strcpy(next->nom, tempData);
+
+                        strcpy(tempData, current->prenom);
+                        strcpy(current->prenom, next->prenom);
+                        strcpy(next->prenom, tempData);
+
+                        tempKey = current->age;
+                        current->age = next->age;
+                        next->age = tempKey;
                     }
+                    current = current->next;
+                    next = next->next;
                 }
             }
             break;
         case '2':
+            for (i = 0; i < ind; i++, ind--) {
+                current = List;
+                next = List->next;
 
+                for (j = 1; j < ind; j++) {
+
+                    if (current->age < next->age) {
+                        strcpy(tempData, current->nom);
+                        strcpy(current->nom, next->nom);
+                        strcpy(next->nom, tempData);
+
+                        strcpy(tempData, current->prenom);
+                        strcpy(current->prenom, next->prenom);
+                        strcpy(next->prenom, tempData);
+
+                        tempKey = current->age;
+                        current->age = next->age;
+                        next->age = tempKey;
+                    }
+                    current = current->next;
+                    next = next->next;
+                }
+            }
             break;
         case '3':
-            for (i = 0; i < ind; i++) {
-                for (j = 0; j < ind - 1; j++) {
-                    if (List[j].nom < List[j + 1].nom) {
-                        swap = List[j];
-                        List[j] = List[j + 1];
-                        List[j + 1] = swap;
+            for (i = 0; i < ind; i++, ind--) {
+                current = List;
+                next = List->next;
+
+                for (j = 1; j < ind; j++) {
+
+                    if (current->nom > next->nom) {
+                        strcpy(tempData, current->nom);
+                        strcpy(current->nom, next->nom);
+                        strcpy(next->nom, tempData);
+
+                        strcpy(tempData, current->prenom);
+                        strcpy(current->prenom, next->prenom);
+                        strcpy(next->prenom, tempData);
+
+                        tempKey = current->age;
+                        current->age = next->age;
+                        next->age = tempKey;
                     }
+                    current = current->next;
+                    next = next->next;
                 }
             }
             break;
         case '4':
-            for (i = 0; i < ind; i++) {
-                for (j = 0; j < ind - 1; j++) {
-                    if (List[j].prenom < List[j + 1].prenom) {
-                        swap = List[j];
-                        List[j] = List[j + 1];
-                        List[j + 1] = swap;
+            for (i = 0; i < ind; i++, ind--) {
+                current = List;
+                next = List->next;
+
+                for (j = 1; j < ind; j++) {
+
+                    if (current->prenom > next->prenom) {
+                        strcpy(tempData, current->nom);
+                        strcpy(current->nom, next->nom);
+                        strcpy(next->nom, tempData);
+
+                        strcpy(tempData, current->prenom);
+                        strcpy(current->prenom, next->prenom);
+                        strcpy(next->prenom, tempData);
+
+                        tempKey = current->age;
+                        current->age = next->age;
+                        next->age = tempKey;
                     }
+                    current = current->next;
+                    next = next->next;
                 }
             }
             break;
     }
+    return List;
 }
 
 /*--------------------------------------------*/
@@ -335,6 +434,7 @@ void Trier(ITEM *List, int ind, char cas) {
 
 void Choix(ITEM *listItem, int ind) {
     char cas[10];
+    int ListReturn;
     while (TRUE) {
 
         printf("\033[H\033[2J");
@@ -363,7 +463,7 @@ void Choix(ITEM *listItem, int ind) {
                 printf("*------------------------------------------*\n");
                 printf("Affichage après tri sur age (croissant)\n");
                 printf("*------------------------------------------*\n");
-                Trier(listItem, ind, cas[0]);
+                ListReturn = Trier(listItem, ind, cas[0]);
                 Afficher(listItem);
                 break;
             case '2':
@@ -372,7 +472,7 @@ void Choix(ITEM *listItem, int ind) {
                 printf("*------------------------------------------*\n");
                 printf("Affichage après tri sur age (décroissant)\n");
                 printf("*------------------------------------------*\n");
-                Trier(listItem, ind, cas[0]);
+                ListReturn = Trier(listItem, ind, cas[0]);
                 Afficher(listItem);
                 break;
             case '3':
@@ -381,7 +481,7 @@ void Choix(ITEM *listItem, int ind) {
                 printf("*------------------------------------------*\n");
                 printf("Affichage après tri sur nom (croissant)\n");
                 printf("*------------------------------------------*\n");
-                Trier(listItem, ind, cas[0]);
+                ListReturn = Trier(listItem, ind, cas[0]);
                 Afficher(listItem);
                 break;
             case '4':
@@ -390,7 +490,7 @@ void Choix(ITEM *listItem, int ind) {
                 printf("*------------------------------------------*\n");
                 printf("Affichage après tri sur prénom (croissant)\n");
                 printf("*------------------------------------------*\n");
-                Trier(listItem, ind, cas[0]);
+                ListReturn = Trier(listItem, ind, cas[0]);
                 Afficher(listItem);
                 break;
             default:
